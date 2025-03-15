@@ -1,0 +1,21 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"darts": "Darts",
+	"custom": "Benutzerdefiniert",
+	"select_game_type": "Spieltyp auswählen",
+	"game_type": "Spieltyp",
+	"game_players": "Spieler",
+	"game_start": "Start",
+	"game_addPlayer": "Spieler hinzufügen",
+	"game_removePlayer": "Spieler entfernen",
+	"game_playerName": "Spielername",
+	"game_score": "Punktzahl",
+	"game_currentScore": "Current Score",
+	"game_scoreHistory": "Score History",
+	"game_noScoresYet": "No scores yet",
+	"create_game": "Spiel erstellen",
+	"darts_in_type": "In Type",
+	"darts_out_type": "Out Type",
+	"config_game_darts": "Dart Spiel Einstellungen",
+	"config_player_count": "Spieleranzahl"
+}
