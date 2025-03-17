@@ -12,7 +12,7 @@ export const getAll: RequestHandler = async ({ url }) => {
 
 	const playerScores = await Database.valkey.hgetall(`game:${gameId}:players`);
 	if (withHistory === null) {
-		return json({ scores: playerScores });
+		return json({ success: true, scores: playerScores });
 	}
 	const history: Record<string, Score[]> = {};
 	const playerIds = Object.keys(playerScores);
@@ -20,5 +20,5 @@ export const getAll: RequestHandler = async ({ url }) => {
 		const historyDb = await Database.valkey.lrange(`game:${gameId}:${playerId}:hist`, 0, -1);
 		history[playerId] = historyDb.reverse().map((hist) => JSON.parse(hist));
 	}
-	return json({ scores: playerScores, history });
+	return json({ success: true, scores: playerScores, history });
 };

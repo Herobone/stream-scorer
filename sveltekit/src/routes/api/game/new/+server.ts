@@ -86,6 +86,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		.set(`game:${gameId}:owner`, uid)
 		.hset(`game:${gameId}:players`, scores)
 		.set(`game:${gameId}:sequence`, 0)
+		.set(`user:${uid}:activeGame`, gameId)
 		.exec();
 
 	return json({ success: true, gameId });
