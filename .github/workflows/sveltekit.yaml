@@ -5,6 +5,7 @@ on:
     paths:
       - 'sveltekit/**'
       - '.github/workflows/sveltekit.yaml'
+  workflow_dispatch: # Manual trigger
 
 env:
   REGISTRY: ghcr.io
@@ -34,6 +35,8 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: sveltekit
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta

@@ -6,6 +6,7 @@ on:
     paths:
       - 'go_backend/**'
       - '.github/workflows/backend.yaml'
+  workflow_dispatch: # Manual trigger
 
 env:
   REGISTRY: ghcr.io
