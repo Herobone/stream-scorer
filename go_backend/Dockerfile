@@ -8,15 +8,15 @@ WORKDIR /myapp
 
 COPY go.mod .
 # Define build-time arguments for Go cache directory
-ARG CACHE_DIR=/go/cache
+RUN go env -w GOMODCACHE=/root/.cache/go-build
 
-RUN --mount=type=cache,target=$CACHE_DIR/pkg/mod \
-    --mount=type=cache,target=$CACHE_DIR/build \
+RUN --mount=type=cache,target=/root/.cache/go-build \
     go mod download && go mod verify
 
 COPY . .
 # Build the binary
-RUN go build \
+RUN --mount=type=cache,target=/root/.cache/go-build \
+    go build \
     -ldflags='-w -s -extldflags "-static"' -a \
     -o /myapp/app .
 
