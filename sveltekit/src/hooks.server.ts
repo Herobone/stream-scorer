@@ -10,4 +10,4 @@ const paraglideHandle: Handle = ({ event, resolve }) =>
 		})
 	);
 
-export const handle: Handle = sequence(paraglideHandle, authHandle);
+export const handle: Handle = sequence(authHandle, paraglideHandle);
