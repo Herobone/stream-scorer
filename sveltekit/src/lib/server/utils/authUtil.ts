@@ -1,5 +1,4 @@
 import type { Session } from '@auth/sveltekit';
-import { json } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 import { Database } from '$lib/server/db';
 import { users } from '$lib/server/db/schemas';

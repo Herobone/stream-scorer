@@ -5,12 +5,12 @@ import { users } from './users';
 export const accounts = pgTable(
 	'account',
 	{
-		userId: text('userId')
+		userId: text('user_id')
 			.notNull()
 			.references(() => users.id, { onDelete: 'cascade' }),
 		type: text('type').$type<AdapterAccountType>().notNull(),
 		provider: text('provider').notNull(),
-		providerAccountId: text('providerAccountId').notNull(),
+		providerAccountId: text('provider_account_id').notNull(),
 		refresh_token: text('refresh_token'),
 		access_token: text('access_token'),
 		expires_at: integer('expires_at'),
@@ -29,8 +29,8 @@ export const accounts = pgTable(
 );
 
 export const sessions = pgTable('session', {
-	sessionToken: text('sessionToken').primaryKey(),
-	userId: text('userId')
+	sessionToken: text('session_token').primaryKey(),
+	userId: text('user_id')
 		.notNull()
 		.references(() => users.id, { onDelete: 'cascade' }),
 	expires: timestamp('expires', { mode: 'date' }).notNull()
@@ -55,15 +55,15 @@ export const verificationTokens = pgTable(
 export const authenticators = pgTable(
 	'authenticator',
 	{
-		credentialID: text('credentialID').notNull().unique(),
-		userId: text('userId')
+		credentialID: text('credential_id').notNull().unique(),
+		userId: text('user_id')
 			.notNull()
 			.references(() => users.id, { onDelete: 'cascade' }),
-		providerAccountId: text('providerAccountId').notNull(),
-		credentialPublicKey: text('credentialPublicKey').notNull(),
+		providerAccountId: text('provider_account_id').notNull(),
+		credentialPublicKey: text('credential_public_key').notNull(),
 		counter: integer('counter').notNull(),
-		credentialDeviceType: text('credentialDeviceType').notNull(),
-		credentialBackedUp: boolean('credentialBackedUp').notNull(),
+		credentialDeviceType: text('credential_device_type').notNull(),
+		credentialBackedUp: boolean('credential_backed_up').notNull(),
 		transports: text('transports')
 	},
 	(authenticator) => [

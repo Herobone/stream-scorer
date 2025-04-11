@@ -11,7 +11,7 @@ export const gameTypeEnum = pgEnum('game_type', ['unknown', ...gameTypeValues]);
 
 export const games = pgTable('games', {
 	id: serial('id').primaryKey(),
-	gameType: text().$type<GameType>().notNull(),
+	gameType: text('game_type').$type<GameType>().notNull(),
 	owner: text('owner')
 		.notNull()
 		.references(() => users.id),

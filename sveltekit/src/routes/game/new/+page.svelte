@@ -4,14 +4,14 @@
 	import { GameType, type GameOptions } from '$lib/types/GameOptions';
 	import { m } from '$lib/paraglide/messages';
 	import Select from '$lib/components/ui/Select.svelte';
-	import Darts from '$lib/components/gameConfigs/DartsGameConfig.svelte';
-	import PersonSimpleThrow from 'phosphor-svelte/lib/PersonSimpleThrow';
 	import DartsGameConfig from '$lib/components/gameConfigs/DartsGameConfig.svelte';
 	import { goto } from '$app/navigation';
 	import { type ScoreOptions } from '$lib/types/ScoringEngine';
-	import { type DartsScoringOptions } from '$lib/scoring/darts';
-	import PlayerNameInput from '$lib/components/PlayerNameInput.svelte';
 	import OtherPlayerNameInput from '$lib/components/OtherPlayerNameInput.svelte';
+	import type { PageProps } from './$types';
+	import type { DartsScoringOptions } from '$lib/scoring/darts';
+
+	const { data }: PageProps = $props();
 
 	const gameType = [
 		{
@@ -43,12 +43,12 @@
 			})
 		});
 
-		const data = await result.json();
-		if (data.success) {
-			const gameId = data.gameId;
-			goto(`/game/${gameId}/play`);
+		const return_data = await result.json();
+		if (return_data.success) {
+			const gameId = return_data.gameId;
+			await goto(`/game/${gameId}/play`);
 		} else {
-			console.error(data.message);
+			console.error(return_data.message);
 		}
 	}
 </script>

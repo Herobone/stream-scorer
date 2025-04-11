@@ -11,9 +11,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	console.log(session);
 
 	const uid = await getUID(session);
-	if (typeof uid !== 'string') {
-		return uid;
-	}
 
 	const data: Partial<{
 		gameType: string;
